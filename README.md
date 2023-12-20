@@ -9,6 +9,16 @@ First track of Google Capstone Project part of  Google Data Analytics Profession
 - [ ] Supporting visualizations and key findings
 - [ ] Your top three recommendations based on your analysis
 
+# Table of content
+- [Overview](#Overview)
+    - [Introduction](#Introduction)
+    - [Goal](#Goal)
+    - [My Job](#My-job)
+- [Analysis Process](#Analysis-Process)
+    - [Ask](#Ask)
+       - [Business Statement](#Business-Statement)
+       - [Stakeholders](#Stakeholders)
+
 # Overview 
 ### Introduction
 Cyclists is a fictional company launched in 2016, it has: 
