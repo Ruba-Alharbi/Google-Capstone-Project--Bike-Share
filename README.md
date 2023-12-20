@@ -18,6 +18,12 @@ First track of Google Capstone Project part of  Google Data Analytics Profession
     - [Ask](#Ask)
        - [Business Statement](#Business-Statement)
        - [Stakeholders](#Stakeholders)
+    - [Prepare](#Prepare)
+    - [Process](#Process)
+    - [Analyze](#Analyze)
+    - [Share](#Share)
+    - [Act](#Act)
+
 
 # Overview 
 ### Introduction
@@ -58,7 +64,13 @@ Understanding the different behaviors of casual riders and annual members, to en
 
 ## Prepare
 
+## Process
 
+## Analyze
+
+## Share
+
+## Act
 
 
 
