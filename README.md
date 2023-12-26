@@ -20,6 +20,7 @@ First track of Google Capstone Project part of  Google Data Analytics Profession
        - [Stakeholders](#Stakeholders)
     - [Prepare](#Prepare)
     - [Process](#Process)
+       - [Data Cleaning](#Data-Cleaning)
     - [Analyze](#Analyze)
     - [Share](#Share)
     - [Act](#Act)
@@ -60,14 +61,14 @@ Understanding the different behaviors of casual riders and annual members, to en
 - The Director of Marketing (Lily Moreno)
 - Marketing Analytics team
 - Executive team
-- Users of Cyclistic
 
 ## Prepare
 ### Description of the used datasets
 Source | [Cyclistic trip data](https://divvy-tripdata.s3.amazonaws.com/index.html)
 | :--- | :---
 Publisher | Motivate International Inc.
-Dataset  | 202301-divvy-tripdata to 202308-divvy-tripdata
+Dataset  | 202301-divvy-tripdata to 202304-divvy-tripdata
+Timespan | First Quarter of 2023
 
 Attribute name | Attribute Description | Example
 | :--- | :--- | :--- 
@@ -86,6 +87,111 @@ end_lng | This attribute shows the end longitude of the ride | -87.63953
 member_casual |This attribute shows the Member or Casual rider | member
 
 ## Process
+### Tool
+I'm using SQL for this phase; because the dataset is too big to handle with spreadsheet software.
+### Data Cleaning 
+#### Checklist:
+- [x] Dataset size -> 1065153 rows
+- [x] Adding additional attributes -> 1. Month, 2.  Day of the Week, 3. Ride Length
+- [x] Incorrect data 
+- [ ] Missing values 
+- [ ] Duplicate 
+
+#### Code
+```
+# Create a new table with bike usage data for the first quarter of 2023
+DROP TABLE IF EXISTS bike_q1;
+CREATE TABLE bike_q1 AS 
+(
+SELECT  `ride_id`,
+`rideable_type`,
+`started_at`,
+`ended_at`,
+ TIMEDIFF(ended_at, started_at) AS ride_duration, 
+ MONTH(started_at) AS month,
+ DAYNAME(started_at) AS day_of_week,
+`start_station_name`,
+`start_station_id`,
+`end_station_name`,
+`end_station_id`,
+`start_lat`,
+`start_lng`,
+`end_lat`,
+`end_lng`,
+`member_casual`
+FROM january
+) 
+UNION ALL
+(
+SELECT  `ride_id`,
+`rideable_type`,
+`started_at`,
+`ended_at`,
+ TIMEDIFF(ended_at, started_at) AS ride_duration, 
+ MONTH(started_at) AS month,
+ DAYNAME(started_at) AS day_of_week,
+`start_station_name`,
+`start_station_id`,
+`end_station_name`,
+`end_station_id`,
+`start_lat`,
+`start_lng`,
+`end_lat`,
+`end_lng`,
+`member_casual`
+FROM february
+)
+UNION ALL
+(
+SELECT  `ride_id`,
+`rideable_type`,
+`started_at`,
+`ended_at`,
+ TIMEDIFF(ended_at, started_at) AS ride_duration, 
+ MONTH(started_at) AS month,
+ DAYNAME(started_at) AS day_of_week,
+`start_station_name`,
+`start_station_id`,
+`end_station_name`,
+`end_station_id`,
+`start_lat`,
+`start_lng`,
+`end_lat`,
+`end_lng`,
+`member_casual`
+FROM march
+)
+UNION ALL
+(
+SELECT  `ride_id`,
+`rideable_type`,
+`started_at`,
+`ended_at`,
+ TIMEDIFF(ended_at, started_at) AS ride_duration, 
+ MONTH(started_at) AS month,
+ DAYNAME(started_at) AS day_of_week,
+`start_station_name`,
+`start_station_id`,
+`end_station_name`,
+`end_station_id`,
+`start_lat`,
+`start_lng`,
+`end_lat`,
+`end_lng`,
+`member_casual`
+FROM april
+);
+```
+```
+# Eleminate data with ride duration < 1 minute => result of deleting 72 rows
+SELECT *
+FROM bike_q1
+WHERE ride_duration < 1;
+
+DELETE FROM bike_q1
+WHERE ride_duration < 1;
+```
+
 
 ## Analyze
 
