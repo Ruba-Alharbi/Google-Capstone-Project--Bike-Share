@@ -91,10 +91,10 @@ member_casual |This attribute shows the Member or Casual rider | member
 I'm using SQL for this phase; because the dataset is too big to handle with spreadsheet software.
 ### Data Cleaning 
 #### Checklist:
-- [x] Dataset size -> 1065153 rows
+- [x] Dataset size -> 1,065,153 rows
 - [x] Adding additional attributes -> 1. Month, 2.  Day of the Week, 3. Ride Length
 - [x] Incorrect data 
-- [ ] Missing values 
+- [ ] Missing values -> 242,643 rows
 - [ ] Duplicate 
 
 #### Code
