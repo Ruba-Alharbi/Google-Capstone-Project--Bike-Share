@@ -4,7 +4,7 @@ First track of Google Capstone Project part of  Google Data Analytics Profession
 # Deliverables
 - [x] A clear statement of the business task
 - [x] A description of all data sources used
-- [ ] Documentation of any cleaning or manipulation of data
+- [x] Documentation of any cleaning or manipulation of data
 - [ ] A summary of your analysis
 - [ ] Supporting visualizations and key findings
 - [ ] Your top three recommendations based on your analysis
@@ -95,7 +95,7 @@ I'm using MySQL for this phase; because the dataset is too big to handle with sp
 - [x] Adding additional attributes -> 1. Month, 2.  Day of the Week, 3. Ride Length
 - [x] Incorrect data 
 - [x] Missing values -> 242,643 rows
-- [ ] Duplicate 
+- [x] Duplicate -> No duplicates
 
 #### Code
 ```
@@ -103,119 +103,127 @@ I'm using MySQL for this phase; because the dataset is too big to handle with sp
 DROP TABLE IF EXISTS bike_q1;
 CREATE TABLE bike_q1 AS 
 (
-SELECT  `ride_id`,
-`rideable_type`,
-`started_at`,
-`ended_at`,
- TIMEDIFF(ended_at, started_at) AS ride_duration, 
- MONTH(started_at) AS month,
- DAYNAME(started_at) AS day_of_week,
-`start_station_name`,
-`start_station_id`,
-`end_station_name`,
-`end_station_id`,
-`start_lat`,
-`start_lng`,
-`end_lat`,
-`end_lng`,
-`member_casual`
-FROM january
+SELECT
+	`ride_id`,
+	`rideable_type`,
+	`started_at`,
+	`ended_at`,
+	 TIMEDIFF(ended_at, started_at) AS ride_duration, 
+	 MONTH(started_at) AS month,
+	 DAYNAME(started_at) AS day_of_week,
+	`start_station_name`,
+	`start_station_id`,
+	`end_station_name`,
+	`end_station_id`,
+	`start_lat`,
+	`start_lng`,
+	`end_lat`,
+	`end_lng`,
+	`member_casual`
+FROM
+	january
 ) 
 UNION ALL
 (
-SELECT  `ride_id`,
-`rideable_type`,
-`started_at`,
-`ended_at`,
- TIMEDIFF(ended_at, started_at) AS ride_duration, 
- MONTH(started_at) AS month,
- DAYNAME(started_at) AS day_of_week,
-`start_station_name`,
-`start_station_id`,
-`end_station_name`,
-`end_station_id`,
-`start_lat`,
-`start_lng`,
-`end_lat`,
-`end_lng`,
-`member_casual`
-FROM february
+SELECT
+	`ride_id`,
+	`rideable_type`,
+	`started_at`,
+	`ended_at`,
+	 TIMEDIFF(ended_at, started_at) AS ride_duration, 
+	 MONTH(started_at) AS month,
+	 DAYNAME(started_at) AS day_of_week,
+	`start_station_name`,
+	`start_station_id`,
+	`end_station_name`,
+	`end_station_id`,
+	`start_lat`,
+	`start_lng`,
+	`end_lat`,
+	`end_lng`,
+	`member_casual`
+FROM
+	february
 )
 UNION ALL
 (
-SELECT  `ride_id`,
-`rideable_type`,
-`started_at`,
-`ended_at`,
- TIMEDIFF(ended_at, started_at) AS ride_duration, 
- MONTH(started_at) AS month,
- DAYNAME(started_at) AS day_of_week,
-`start_station_name`,
-`start_station_id`,
-`end_station_name`,
-`end_station_id`,
-`start_lat`,
-`start_lng`,
-`end_lat`,
-`end_lng`,
-`member_casual`
-FROM march
+SELECT 
+	`ride_id`,
+	`rideable_type`,
+	`started_at`,
+	`ended_at`,
+	 TIMEDIFF(ended_at, started_at) AS ride_duration, 
+	 MONTH(started_at) AS month,
+	 DAYNAME(started_at) AS day_of_week,
+	`start_station_name`,
+	`start_station_id`,
+	`end_station_name`,
+	`end_station_id`,
+	`start_lat`,
+	`start_lng`,
+	`end_lat`,
+	`end_lng`,
+	`member_casual`
+FROM
+	march
 )
 UNION ALL
 (
-SELECT  `ride_id`,
-`rideable_type`,
-`started_at`,
-`ended_at`,
- TIMEDIFF(ended_at, started_at) AS ride_duration, 
- MONTH(started_at) AS month,
- DAYNAME(started_at) AS day_of_week,
-`start_station_name`,
-`start_station_id`,
-`end_station_name`,
-`end_station_id`,
-`start_lat`,
-`start_lng`,
-`end_lat`,
-`end_lng`,
-`member_casual`
-FROM april
+SELECT
+	`ride_id`,
+	`rideable_type`,
+	`started_at`,
+	`ended_at`,
+	 TIMEDIFF(ended_at, started_at) AS ride_duration, 
+	 MONTH(started_at) AS month,
+	 DAYNAME(started_at) AS day_of_week,
+	`start_station_name`,
+	`start_station_id`,
+	`end_station_name`,
+	`end_station_id`,
+	`start_lat`,
+	`start_lng`,
+	`end_lat`,
+	`end_lng`,
+	`member_casual`
+FROM
+	april
 );
 ```
-```
-# Eleminate data with ride duration < 1 minute => result of deleting 72 rows
-SELECT *
-FROM bike_q1
-WHERE ride_duration < 1;
 
-DELETE FROM bike_q1
-WHERE ride_duration < 1;
 ```
+# Eleminate negative ride duration minutes
+DELETE FROM 
+	bike_q1
+WHERE 
+	ride_duration < 1;
+```
+
 ```
 # Handeling missing values by creating a new category Unknown 
 UPDATE bike_q1 
 SET 
-start_station_id  = "Unknown"
+	start_station_id  = "Unknown"
 WHERE
-	  start_station_id  = '' # 152048 changed row
+	start_station_id  = '' # 152048 changed row
 
 UPDATE bike_q1 
 SET 
-end_station_id  = "Unknown"
+	end_station_id  = "Unknown"
 WHERE
-	  end_station_id  = '' # 160906 changed row
+	end_station_id  = '' # 160906 changed row
 
 UPDATE bike_q1 
 SET 
-start_station_name  = "Unknown"
+	start_station_name  = "Unknown"
 WHERE
-	  start_station_name  = '' # 151916 changed row
+	start_station_name  = '' # 151916 changed row
 
 UPDATE bike_q1 
 SET 
-end_station_name  = "Unknown"
+	end_station_name  = "Unknown"
 WHERE
-	  end_station_name  = '' # 160765 changed row
+	end_station_name  = '' # 160765 changed row
 ```
 
 ## Analyze
