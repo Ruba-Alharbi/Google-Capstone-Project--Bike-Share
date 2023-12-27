@@ -88,13 +88,13 @@ member_casual |This attribute shows the Member or Casual rider | member
 
 ## Process
 ### Tool
-I'm using SQL for this phase; because the dataset is too big to handle with spreadsheet software.
+I'm using MySQL for this phase; because the dataset is too big to handle with spreadsheet software.
 ### Data Cleaning 
 #### Checklist:
 - [x] Dataset size -> 1,065,153 rows
 - [x] Adding additional attributes -> 1. Month, 2.  Day of the Week, 3. Ride Length
 - [x] Incorrect data 
-- [ ] Missing values -> 242,643 rows
+- [x] Missing values -> 242,643 rows
 - [ ] Duplicate 
 
 #### Code
@@ -191,7 +191,32 @@ WHERE ride_duration < 1;
 DELETE FROM bike_q1
 WHERE ride_duration < 1;
 ```
+```
+# Handeling missing values by creating a new category Unknown 
+UPDATE bike_q1 
+SET 
+start_station_id  = "Unknown"
+WHERE
+	  start_station_id  = '' # 152048 changed row
 
+UPDATE bike_q1 
+SET 
+end_station_id  = "Unknown"
+WHERE
+	  end_station_id  = '' # 160906 changed row
+
+UPDATE bike_q1 
+SET 
+start_station_name  = "Unknown"
+WHERE
+	  start_station_name  = '' # 151916 changed row
+
+UPDATE bike_q1 
+SET 
+end_station_name  = "Unknown"
+WHERE
+	  end_station_name  = '' # 160765 changed row
+```
 
 ## Analyze
 
