@@ -189,6 +189,17 @@ SELECT
 FROM
 	april
 );
+
+# Add a new column for time
+ALTER TABLE 
+	bike_q1
+ADD COLUMN 
+	time TIME;
+
+UPDATE 
+	bike_q1
+SET
+	time = RIGHT(started_at,8) ;
 ```
 
 ```
