@@ -5,7 +5,7 @@ First track of Google Capstone Project part of  Google Data Analytics Profession
 - [x] A clear statement of the business task
 - [x] A description of all data sources used
 - [x] Documentation of any cleaning or manipulation of data
-- [ ] A summary of your analysis
+- [x] A summary of your analysis
 - [ ] Supporting visualizations and key findings
 - [ ] Your top three recommendations based on your analysis
 
@@ -238,6 +238,7 @@ WHERE
 ```
 
 ## Analyze
+Analysis was done using SQL. You can see the analysis result [here](bike_analysis.sql)
 
 ## Share
 
