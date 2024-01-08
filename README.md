@@ -241,7 +241,10 @@ WHERE
 Analysis was done using SQL. You can see the analysis result [here](bike_analysis.sql)
 
 ## Share
-
+The data visualization was done using Tableau.
+### 1. Ride distribution
+[Viz like](https://public.tableau.com/views/Riderdistribution/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link)
+* 
 ## Act
 
 
