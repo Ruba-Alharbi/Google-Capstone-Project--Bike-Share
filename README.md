@@ -6,7 +6,7 @@ First track of Google Capstone Project part of  Google Data Analytics Profession
 - [x] A description of all data sources used
 - [x] Documentation of any cleaning or manipulation of data
 - [x] A summary of your analysis
-- [ ] Supporting visualizations and key findings
+- [x] Supporting visualizations and key findings
 - [ ] Your top three recommendations based on your analysis
 
 # Table of content
@@ -244,6 +244,26 @@ Analysis was done using SQL. You can see the analysis result [here](bike_analysi
 The data visualization was done using Tableau.
 ### 1. Ride distribution
 [Viz like](https://public.tableau.com/views/Riderdistribution/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link)
+#### key findings
+* The busiest hours for riders are 16 and 17 in the evening
+* Casual riders number increased in the last month of 1Q from 32K to 45K by approximately 42%.
+* The top start and end station for casuals is Street Dr & Grand Ave, whereas for members, it is: Ellis Ave & 60th St.
+
+### 2. Rider's Usage in Weekens vs Weekdays
+[Viz link](https://public.tableau.com/views/Bikeshareusageinweekendvsweekdays/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link)
+#### key findings
+* Riders use bike share bikes on weekdays more than on weekends by approximately 197% for members and by approximately 50% for casuals.
+* Favorite bike types for members are: Classic and Electric bikes respectively whereas for casuals Electric, Classic, and Docked bikes respectively
+* The casuals' top station on weekdays and weekends is Street Dr & Grade Ave.
+* The members' top station on weekdays and weekends is Clinton St & Washington Blvd.
+
+ ### 3. Riders' Usage on Special Days
+[Viz link](https://public.tableau.com/views/RidersUsageonSpecialdays/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link)
+#### key findings
+* The busiest hours on Valentine's Day are from 16-17 whereas for Ester Sunday from 13-17.
+ ### 4. Riders' Usage in Spring & Winter
+[Viz link](https://public.tableau.com/views/RidersUsageinSpringWinter/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link)
+#### key findings
 * 
 ## Act
 
