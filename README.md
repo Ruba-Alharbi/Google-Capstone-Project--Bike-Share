@@ -6,7 +6,7 @@ First track of Google Capstone Project part of  Google Data Analytics Profession
 - [x] Documentation of any cleaning or manipulation of data
 - [x] A summary of your analysis
 - [x] Supporting visualizations and key findings
-- [ ] Your top three recommendations based on your analysis
+- [x] Your top three recommendations based on your analysis
 
 # Table of content
 - [Overview](#Overview)
@@ -267,6 +267,9 @@ The data visualization was done using Tableau.
 * The busiest days in the Winter for casuals are  Wednesday, Thursday, and Friday in March, Saturday and Sunday in February, and Sunday and Tuesday in January.
 * The top 3 days for casuals are Wednesday, Thursday, and Friday, whereas for members are Thursday, Friday, and Saturday in the Spring "April".
 ## Act
-
+My analysis leads me to suggest the following:
+1. Expand the number of bikes in the stations at Street Dr. & Grand Ave. and Ellis Ave. & 60th St.
+2. Attract casual riders by offering additional services on the weekends.
+3. Since electric bikes are preferred by casual riders, supply more of them.
 
 
