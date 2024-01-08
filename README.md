@@ -1,6 +1,5 @@
 # Google Capstone Project Bike-Share
 First track of Google Capstone Project part of  Google Data Analytics Professional Certificate
-# **> Project Still in Progress <** 
 # Deliverables
 - [x] A clear statement of the business task
 - [x] A description of all data sources used
@@ -264,7 +263,9 @@ The data visualization was done using Tableau.
  ### 4. Riders' Usage in Spring & Winter
 [Viz link](https://public.tableau.com/views/RidersUsageinSpringWinter/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link)
 #### key findings
-* 
+* The busiest days in the Winter for members are Wednesday and Thursday in March, Monday and Tuesday in February, and Tuesday and Wednesday in January.
+* The busiest days in the Winter for casuals are  Wednesday, Thursday, and Friday in March, Saturday and Sunday in February, and Sunday and Tuesday in January.
+* The top 3 days for casuals are Wednesday, Thursday, and Friday, whereas for members are Thursday, Friday, and Saturday in the Spring "April".
 ## Act
 
 
