@@ -1,6 +1,6 @@
 USE bike_share;
 
--- How casual riders & annual members use Cylistic bikes differently?
+# How casual riders & annual members use Cylistic bikes differently
 
 -- 1. Total rides made in the First quarter of 2023
 SELECT 
@@ -24,16 +24,16 @@ GROUP BY
 ORDER BY 
 	2,1;		     
  
- -- 3. Distribution of rides by the started hour
-SELECT 
+ -- 3. Distribution of rides by the hour
+ SELECT 
 	LEFT(time,2) start_hour,
-  member_casual,
+    member_casual,
 	COUNT(*) total_rides
 FROM 
 	bike_q1
 GROUP BY 
 	member_casual,
-  start_hour
+    start_hour
 ORDER BY 
 	1,3 DESC;
     
@@ -53,22 +53,22 @@ FROM
 -- 4.3 The longest ride duration info
 SELECT
 	MAX(ride_duration) longest_ride_duration,
-  member_casual,
-  day_of_week,
-  month,
-  time,
-  start_station_name
+    member_casual,
+    day_of_week,
+    month,
+    time,
+    start_station_name
 FROM 
 	bike_q1
 GROUP BY 
 	member_casual,
-  day_of_week,
+    day_of_week,
 	month,
-  time,
-  start_station_name
+    time,
+    start_station_name
 HAVING
 	longest_ride_duration >= '00:15:00' AND
-  start_station_name <> 'Unknown'
+    start_station_name <> 'Unknown'
 ORDER BY
 	1 DESC
 LIMIT 50;
@@ -76,22 +76,22 @@ LIMIT 50;
 -- 4.4 The shortest ride duration info
 SELECT
 	MIN(ride_duration) shortest_ride_duration,
-  member_casual,
-  day_of_week,
-  month,
-  time,
-  start_station_name
+    member_casual,
+    day_of_week,
+    month,
+    time,
+    start_station_name
 FROM 
 	bike_q1
 GROUP BY 
 	member_casual,
-  day_of_week,
+    day_of_week,
 	month,
-  time,
-  start_station_name
+    time,
+    start_station_name
 HAVING
 	shortest_ride_duration > '00:01:00' AND
-  start_station_name <> 'Unknown'
+    start_station_name <> 'Unknown'
 ORDER BY
 	1, 5
 LIMIT 50; 
@@ -142,7 +142,7 @@ LIMIT
 	5; 
 
 -- 7. Seasonal patterns among cyclists (Valentine's Day 02-14) (Presidents' Day 02-20) (Easter Sunday 04-09) (WINTER Jan-Mar, SPRING Apr)
--- 7.1 Valentine's Day 14-02
+-- 7.1 Valentine's Day
 SELECT
 	member_casual,
     LEFT(time,2) start_hour,
@@ -156,7 +156,7 @@ GROUP BY
 ORDER BY
 	start_hour,
     total_ride DESC;
--- 7.2 Easter Sunday 04-09
+-- 7.2 (Easter Sunday 09-04) Activites in bike ride
 SELECT
 	member_casual,
     LEFT(time,2) start_hour,
@@ -170,7 +170,7 @@ GROUP BY
 ORDER BY
 	start_hour,
     total_ride DESC;  
--- 7.3 WINTER Jan-Mar
+-- 7.3 (WINTER Jan-Mar) Activites in bike ride
 SELECT
 	member_casual,
     day_of_week,
@@ -188,7 +188,7 @@ ORDER BY
 	day_of_week,
     month,
     total_ride DESC; 
--- 7.4 SPRING Apr
+-- 7.4 (SPRING Apr) Activites in bike ride
 SELECT
 	member_casual,
     day_of_week,
@@ -206,10 +206,10 @@ ORDER BY
     total_ride DESC;     
 
 -- 8. Distribution of rides by type
--- 8.1 Distribution of members
 SELECT
 	month,
 	LEFT(time,2) start_hour,
+    member_casual,
     rideable_type,
 	ride_duration,
     start_station_name,
@@ -218,104 +218,42 @@ SELECT
 FROM
 	bike_q1
 WHERE
-	member_casual = 'member' AND
     start_station_name <> 'Unknown' AND
     end_station_name <> 'Unknown' AND
     ride_duration >= '00:01:00'
 GROUP BY
-	1,2,3,4,5,6
+	1,2,3,4,5,6,7
 ORDER BY
 	2,
-    4 DESC,
-    7 DESC;
--- 8.2 Distribution of casual
-SELECT
-	month,
-	LEFT(time,2) start_hour,
-    rideable_type,
-	ride_duration,
-    start_station_name,
-    end_station_name,
-    COUNT(ride_id) total_ride
-FROM
-	bike_q1
-WHERE
-	member_casual = 'casual' AND
-    start_station_name <> 'Unknown' AND
-    end_station_name <> 'Unknown' AND
-    ride_duration >= '00:01:00'
-GROUP BY
-	1,2,3,4,5,6
-ORDER BY
-	2,
-    4 DESC,
-    7 DESC;
-
--- 8.3 Popular bike type for member and casual riders
-SELECT
-    member_casual,
-    rideable_type,
-    COUNT(*) AS ride_count
-FROM
-    bike_q1
-GROUP BY
-    member_casual,
-    rideable_type
-ORDER BY
-    member_casual,
-    ride_count DESC;
-
--- 9. Casual behavior in the weekend VS weekday
-SELECT
-	CASE 
-		WHEN day_of_week = 'Friday' THEN 'Weekend'
-        WHEN day_of_week = 'Saturday' THEN 'Weekend'
-		ELSE 'Weekday'
-	END AS weekend_weekday,
-    rideable_type,
-	ride_duration,
-    start_station_name,
-    end_station_name,
-    COUNT(ride_id)
-FROM
-	bike_q1
-WHERE
-	member_casual = 'casual' AND
-    start_station_name <> 'Unknown' AND
-    end_station_name <> 'Unknown' AND
-    ride_duration >= '00:01:00'
-GROUP BY
-	1,2,3,4,5
-ORDER BY
-	1,
-    3 DESC;    
+    5 DESC,
+    8 DESC;  
   
--- 10. Member behavior in the weekend VS weekday
+-- 9. Member and Casual behavior in the weekend VS weekday
 SELECT
 	CASE 
 		WHEN day_of_week = 'Friday' THEN 'Weekend'
         WHEN day_of_week = 'Saturday' THEN 'Weekend'
 		ELSE 'Weekday'
 	END AS weekend_weekday,
+    member_casual,
     rideable_type,
-	ride_duration,
+	TIME(ride_duration),
     start_station_name,
     end_station_name,
     COUNT(ride_id)
 FROM
 	bike_q1
 WHERE
-	member_casual = 'member' AND
     start_station_name <> 'Unknown' AND
     end_station_name <> 'Unknown' AND
     ride_duration >= '00:01:00'
 GROUP BY
-	1,2,3,4,5
+	1,2,3,4,5,6
 ORDER BY
 	1,
-    3 DESC;    
+    4 DESC;    
 
--- 11. Total ride in weekend VS. weekday
+-- 10. Total ride in weekend VS. weekday
  SELECT
 	CASE 
 		WHEN day_of_week = 'Friday' THEN 'Weekend'
@@ -327,4 +265,4 @@ ORDER BY
 FROM
 	bike_q1
 GROUP BY
-	1,2;    
+	1,2;      
